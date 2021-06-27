@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "cuestionarios",
     "consultasubsidio",
     "django_extensions",
-    "heroku_app.apps.HerokuAppConfig",
 ]
 
 MIDDLEWARE = [
