@@ -1,0 +1,55 @@
+
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a href="" class="navbar-brand">
+          <img src="{% static 'img/logosmall.png' %}" height="50">
+        </a>
+        <a class="navbar-brand" href="">Gobierno de El Salvador</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a href="/" class="nav-link">INICIO</a>
+            </li>
+            <li class="nav-item active">
+              <a href="/estadisticas/" class="nav-link">ESTADISTICAS</a>
+            </li>
+            <li class="nav-item active">
+              <a href="/subsidios/" class="nav-link">SUBSIDIOS</a>
+            </li>
+            <li class="nav-item active">
+              <a href="/encuestas/" class="nav-link">ENCUESTAS</a>
+            </li>
+            <li class="nav-item active">
+              <a href="/acerca/" class="nav-link">CONTACTANOS</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.is_authenticated %}
+                      <u>{{ user.username }}</u>
+                  {% else %}
+                      inicie sesion
+                  {% endif %}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/login/">
+                  Iniciar Sesion
+                </a></li>
+                <li><a class="dropdown-item" href="/configuraciones/">CONFIGURACION</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/out/">CERRAR SESION</a></li>
+              </ul>
+            </li>
+
+          </ul>
+         
+          
+        </div>
+      </div>
+</nav>
+
+

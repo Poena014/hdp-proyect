@@ -1,0 +1,42 @@
+{% extends 'base1.html'%}
+
+{% block title %}
+
+Iniciar Sesión
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+    
+
+    <h2 class="display-5">Inicio de Sesión</h2>
+
+    <div class="row">
+        <form action="" method="post">
+
+            {% csrf_token  %}
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="username">
+            </div>
+      
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">#</span>
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" name="password">
+            </div>
+     
+          
+            <button class="btn btn-primary" type="submit">Login</button>
+
+        </form>
+    </div>
+</div>
+
+  {% endblock %}

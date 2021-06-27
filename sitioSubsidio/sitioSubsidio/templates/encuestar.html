@@ -1,0 +1,66 @@
+{% extends "base1.html" %}
+
+{% block title %}
+    Encuestas: {{cuestionario.nombre}}
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-4">
+        {{cuestionario.nombre}}
+    </h1>
+    <br><br>
+
+    <form action="registro" method="post">
+        {% csrf_token %}
+        <ul class="list-group">
+            {% for pregunta in preguntas %}
+                <li class="list-group-item">                 
+                            <p class="lead">{{pregunta.texto_pregunta}}</p>
+                            {% for item in items %}
+                                    
+                                    {% for it in item %}
+                                        {% if it.preguntas_id == pregunta.id %}
+    
+                                    
+                                            {% if "CH" == pregunta.tipopreguntas %}
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="{{it.id}}"  name="{{it.id}}" id="ch{{it.id}}">
+                                                    <label class="form-check-label" for="ch{{it.id}}">
+                                                    {{it.contenido}}
+                                                    </label>
+                                                </div>
+                                            {% endif %}
+                                            {% if "TX" == pregunta.tipopreguntas %}
+                                                <i>{{it.contenido}}</i>
+                                                <div class="input-group">
+                                                    <textarea class="form-control" name="{{it.id}}" aria-label="With textarea"></textarea>
+                                                </div>
+                                            {% endif %}
+                                            {% if "NUM" == pregunta.tipopreguntas %}
+                                                <i>{{it.contenido}}</i>
+                                                <div class="input-group flex-nowrap">
+                                                    <span class="input-group-text" id="sp{{it.id}}">N #</span>
+                                                    <input type="number" class="form-control" name="{{it.id}}" id="num{{it.id}}" aria-describedby="sp{{it.id}}">
+                                                  </div>
+                                            {% endif %}
+    
+                                        {% endif %}
+                                    {% endfor %}
+                                
+                            {% endfor %}           
+                </li>  
+            {% endfor %}
+                                
+        </ul>
+        <br>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
+
+   
+
+
+
+
+{% endblock %}

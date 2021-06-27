@@ -1,0 +1,34 @@
+{% extends "base1.html" %}
+
+
+{% block title %}
+    Inicio Bienvenidos
+{% endblock%}
+
+{% block content %}
+
+    {% load static %}
+    
+    <br>
+    <br>
+
+    <div class="col">
+
+        {% for sub in subsidios %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{sub.nombre}}</h5>
+                    <p class="card-text">{{sub.descripcion}}</p>
+                    <a href="/estadisticas/{{sub.id}}" class="btn btn-primary">Ver Informacion</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        
+
+
+    </div>
+
+
+
+{% endblock %}

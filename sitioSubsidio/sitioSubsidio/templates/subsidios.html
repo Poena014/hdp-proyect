@@ -1,0 +1,129 @@
+{% extends "base1.html" %}
+
+
+{% block title %}
+    Inicio Bienvenidos
+{% endblock%}
+
+{% block content %}
+
+    <div class="container bg-dark" style=" color:white">
+        <br>
+        <br>
+        <center>
+            <h1 class="display-3">
+                Subsidios
+            </h1>
+        </center>
+        <br>
+    </div>
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            Compruebe la informacion, Si necesita Ayuda Contactenos    
+        </div>
+        <form>
+            <fieldset disabled>
+              <legend>Informacion del Usuario</legend>
+              <div class="row g-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInputGrid"  value="{{user.first_name}}">
+                    <label for="floatingInputGrid">Nombre</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="floatingInputGrid"  value="{{user.last_name}}">
+                      <label for="floatingInputGrid">Apellido</label>
+                    </div>
+                  </div>
+              </div>
+              <br>
+              <div class="mb-3">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputGrid"  value="{{datos.dui}}">
+                  <label for="floatingInputGrid">DUI:</label>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputGrid"  value="{{datos.depar.nombre}}">
+                  <label for="floatingInputGrid">Departamento</label>
+                </div>
+              </div>
+              <div class="row g-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInputGrid"  value="{{datos.muni.nombre}}">
+                    <label for="floatingInputGrid">Municipio</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="floatingInputGrid"  value="{{datos.dire}}">
+                      <label for="floatingInputGrid">Direccion</label>
+                    </div>
+                  </div>
+              </div>
+            </fieldset>
+          </form>
+
+        <br>
+        <br>
+        <div class="container bg-dark" style="color: white">
+            <br>
+            <h1 class="display-6">Lista de subsidios</h1>
+            <br>
+        </div>    
+        <br>
+      
+
+        <div class="accordion" id="accordionExample">
+            {% for subsidio in subsidios %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{subsidio.subsidio.nombre}}<br><br>
+                        {% if subsidio.estado %}
+                            <span class="badge rounded-pill bg-success">Aplica</span>
+                        {% else%}
+                            <span class="badge bg-warning text-dark">No Aplica</span>
+                        {% endif %}
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>{{subsidio.subsidio.descripcion}}</strong> 
+                        <br>
+                        <strong>Monto : $ </strong> {{subsidio.subsidio.monto}}
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+          </div>  
+
+          <br><br>
+          <div class="card text-center">
+            <div class="card-header">
+              <div class="alert alert-danger" role="alert">
+                Problema   
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Necesita Ayuda Contactanos</h5>
+              <p class="card-text">Si tiene problemas, y no puede verificar el estado, contactanos para poder resolver prontamente.</p>
+              <a href="/acerca" class="btn btn-primary">Ir a Contactanos</a>
+            </div>
+            <div class="card-footer text-muted">
+
+            </div>
+          </div>
+
+
+    </div>
+
+
+
+{% endblock %}

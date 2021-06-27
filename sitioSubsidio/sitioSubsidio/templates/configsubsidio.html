@@ -1,0 +1,84 @@
+{% extends "base1.html" %}
+
+{% block title %}
+
+    Configuraciones
+
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <h1 class="display-3">Configuraciones</h1>
+    {% if tipo %}
+        <div class="btn-group">
+            <a href="/configuraciones/" class="btn btn-primary" aria-current="page">Usuarios</a>
+            <a href="/configuraciones/subsidio" class="btn btn-primary active">Subsidios</a>
+            <a href="/configuraciones/encuesta" class="btn btn-primary">Encuestas</a>
+            <a href="/configuraciones/aplica" class="btn btn-primary">Subsidios Aplica</a>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Monto $</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for subsidio in subsidios %}
+                            <tr>
+                                <td><a href="/configuraciones/usuarios/{{usuario.dui}}">{{subsidio.nombre}}</a></td>
+                                <td>{{subsidio.monto}}</td>
+                                <td>{{subsidio.fecha}}</td>
+                                <td>
+                                    {% if subsidio.estado %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked disabled>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Activo
+                                        </label>
+                                    </div>
+                                    {% else %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                No Activo
+                                            </label>
+                                        </div>
+                                    {% endif%}
+                                </td>
+                                <td>
+                                    <form action="" method="post">
+                                         {% csrf_token %}
+                                         <input type="hidden" name="id" value="{{aplico.id}}">
+                                        <input class="btn btn-danger" type="submit" value="Borrar">
+                                    </form>
+
+                                </td>
+                            </tr>
+    
+                            
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-3">
+                <a href="subsidio/add" class="btn btn-success">Agregar Subsidio</a>
+            </div>
+        </div>
+        
+
+    {% else %}
+
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary active" aria-current="page">Usuario</a>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

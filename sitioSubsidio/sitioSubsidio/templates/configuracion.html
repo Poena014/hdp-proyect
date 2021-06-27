@@ -1,0 +1,68 @@
+{% extends "base1.html" %}
+
+{% block title %}
+
+    Configuraciones
+
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <h1 class="display-3">Configuraciones</h1>
+    {% if tipo %}
+        <div class="btn-group">
+            <a href="/configuraciones/" class="btn btn-primary active" aria-current="page">Usuarios</a>
+            <a href="/configuraciones/subsidio" class="btn btn-primary">Subsidios</a>
+            <a href="/configuraciones/encuesta" class="btn btn-primary">Encuestas</a>
+            <a href="/configuraciones/aplica" class="btn btn-primary">Subsidios Aplica</a>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">DUI</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for usuario in usuarios %}
+                            <tr>
+                                <td><a href="/configuraciones/usuarios/{{usuario.dui}}">{{usuario.dui}}</a></td>
+                                <td>{{usuario.usuario.first_name}}</td>
+                                <td>{{usuario.usuario.last_name}}</td>
+                                <td>{{usuario.usuario.username}}</td>
+                                <td>
+                                    <form action="" method="post">
+                                         {% csrf_token %}
+                                         <input type="hidden" name="id" value="{{aplico.id}}">
+                                        <input class="btn btn-danger" type="submit" value="Borrar">
+                                    </form>
+
+                                </td>
+                            </tr>
+    
+                            
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+        
+
+    {% else %}
+
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary active" aria-current="page">Usuario</a>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

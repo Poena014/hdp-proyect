@@ -1,0 +1,50 @@
+{% extends "base1.html" %}
+{% block title %}
+    Inicio Bienvenidos
+{% endblock%}
+
+{% block content %}
+
+    <h1 class="display-4">Agregar Subsidio</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <br><br><br>
+        <div class="mb-3 row">
+            <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputNombre" name="nombre">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            Estado
+            <select class="form-select" aria-label="Default select example" name="estado">
+                <option value="True" selected>Activado</option>
+                <option value="False">Desactivado</option>
+            </select>
+
+        <div class="mb-3 row">
+            <label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
+            <div class="col-sm-10">
+            <input type="date" class="form-control" id="inputFecha" name="fecha">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputDes" class="col-sm-2 col-form-label">Descripcion</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDes" name="descripcion">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <select class="form-select" aria-label="Default select example" name="alcance">
+                <option value="True" selected>Activado</option>
+                <option value="False">Desactivado</option>
+            </select>
+        </div>
+        
+        <input type="submit"  class="btn btn-primary" value="Guardar">
+
+    </form>
+    
+
+
+{% endblock %}

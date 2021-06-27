@@ -1,0 +1,51 @@
+{% extends "base1.html" %}
+
+
+{% block title %}
+    Inicio Bienvenidos
+{% endblock%}
+
+{% block content %}
+
+<br>
+<h1 class="display-4">
+    Encuestas de Opinión
+</h1>
+
+<p class="lead">
+    Bienvenidos, En esta seccion se pueden responder a las siguientes encuestas, esperamos su colaboracion.
+</p>
+{% if datos_cuestionarios %}
+    {% for cuestionario  in datos_cuestionarios %}
+        <a href="/encuestas/{{cuestionario.id}}" class="">
+            <div class="card">
+                <div class="card-body" style="background-color: #3A4F61; color: white">
+                    {{cuestionario.nombre}}
+                </div>
+            </div>
+        </a>
+
+
+    {% endfor %}
+
+{% else %}
+    
+<div class="card text-center">
+    <div class="card-header">
+      <div class="alert alert-warning" role="alert">
+        Por el momento no se encuentra disponible ninguna encuesta
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Muchas gracias por su visita</h5>
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+  </div>
+
+{% endif %}
+
+
+
+{% endblock %}
